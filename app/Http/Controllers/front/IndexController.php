@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use App\Popup;
 
 class IndexController extends Controller
 {
@@ -50,7 +51,8 @@ class IndexController extends Controller
 //        $context->asset_categories = $assetCategories;
         $context->staffs = Staff::inRandomOrder()->get()->take(6);
         $albums = Album::where('school_id',1)->get();
-        return view('front.index',compact('context', 'albums'));
+        $popups = Popup::where('status','active')->get();
+        return view('front.index',compact('context', 'albums','popups'));
     }
 
     public function contact(){

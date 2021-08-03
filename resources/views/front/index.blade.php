@@ -6,6 +6,25 @@
     .slick-slide img{
         display:inline-block;
     }
+
+    .modal.fade.popup-container{
+        display:flex ;
+        justify-content: center;
+        align-items:center;
+        overflow: hidden;
+    }
+
+    /* .show{
+        display:flex !important;
+        flex-direction: column;
+    }
+
+    .popup-container{
+        display:flex !important;
+        justify-content: center;
+        align-items:center;
+    } */
+
 </style>
 @endpush
 
@@ -488,13 +507,36 @@
             {{--</a>--}}
         {{--</div>--}}
     {{--</div>--}}
+    @if(isset($popups))
+        @foreach ($popups as $popup)
+            <div class="modal fade popup-container" id="exampleModal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <!-- <h5 class="modal-title" id="exampleModalLabel">{{ $popup->title }}</h5> -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    <img src="{{ asset($popup->image) }}" alt="">
+                    </div>
+            </div>
+            </div>
+        </div>
+      @endforeach
+      @endif
 
 @endsection
 
 @push('script')
 
 
-
+<script>
+        window.onload = function(){
+            $('.modal').modal('show');
+        }
+    </script>
 <script>
     $(".teacherSlider").slick({
         slidesToShow: 4,

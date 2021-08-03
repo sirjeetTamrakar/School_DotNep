@@ -34,7 +34,7 @@
 }
 
 .main_container{
-    width: 82.5%;
+    width: 100%;
     margin: 0 auto;
     /* font-family: 'Arvo', serif; */
 }
@@ -141,9 +141,6 @@ h1{
 }
 
 .other_courses{
-    position: absolute;
-    bottom: -100%;
-    right: 5%;
     background-color: #F2F5FF;
     display: flex;
     justify-content: center;
@@ -151,12 +148,16 @@ h1{
     flex-direction: column;
     border-radius: 4px;
     padding: 1rem;
+    height:max-content;
+    margin-top: 5rem;
+
 }
 
 .other_courses span{
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
     padding-inline: 4rem;
     padding-bottom: .4rem;
+   
 }
 
 .other_courses a::before{
@@ -177,13 +178,22 @@ h1{
     transition: all .2s ease-in-out;
 }
 
+.text-section{
+    width: 80%;
+    margin: 0 auto;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    margin-bottom: 2rem;
+}
+
 .other_courses a:hover{
     text-decoration: none;
     color: #01314f;
 }
 
 .text{
-    width: 70%;
+    width: 75%;
     display: flex;
     flex-direction: column;
 }
@@ -233,15 +243,25 @@ h1{
         width: 90%;
     }
 }
-@media screen and (max-width:1000px) {
+@media screen and (max-width:1300px) {
+    .text{
+        width: 60%;
+    }
+}
+@media screen and (max-width:1025px) {
     .main_container, .marquee_content{
         width: 100%;
     }
 
-    .main_container{
+    .main_container, .text-section{
         width:100%;
     }
 
+    .text-section{
+        padding-inline: 0 2rem;
+        justify-content:center;
+        align-items:center;
+    }
 
     .text{
         padding-left: 2rem;
@@ -250,11 +270,15 @@ h1{
         margin: 1rem 0;
     }
     .text .course_description{
-        width: 70%;
+        width: 80%;
+    }
+
+    .other_courses{
+        margin-bottom: 4rem;
     }
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:950px) {
     .marquee_content .title{
         font-size: .9rem;
     }
@@ -268,16 +292,13 @@ h1{
         flex-direction: column;
         row-gap: 2rem;
     }
-    .other_courses{
-        margin: 0 5rem;
-        right: 0%;
-        left: 0%;
-        bottom: -50%;
+    .text-section{
+        justify-content:center;
+        align-items:center;
+        flex-direction: column-reverse;
     }
     .text{
-        margin-top: 10rem;
         width: 100%;
-        padding-inline: 1rem;
     }
     .text .about_course{
         margin: 2rem 0;
@@ -287,6 +308,9 @@ h1{
     }
     .text .course_description{
         width: 100%;
+    }
+    .other_courses{
+        margin-bottom: 0;
     }
 }
 
@@ -307,11 +331,20 @@ h1{
         width: 15px;
     }
     .other_courses{
-        margin:0 2rem;
+        margin:2rem auto;
+    }
+    .text-section{
+        width: 100%;
+        justify-content:center;
+        align-items:center;
+        padding:0;
+        margin-block:2rem;
     }
 
-    .diploma h1{
-        font-size: 20px;
+    .text{
+        width:90%;
+        margin: 0 auto;
+        padding:0;
     }
 }
 
@@ -319,9 +352,7 @@ h1{
      ul{
         font-size:.8rem;
     }
-    .diploma h1{
-        font-size: 15px;
-    }
+
     .other_courses{
         margin: 0 1rem;
     }
@@ -340,12 +371,18 @@ h1{
 @section('content')
 
 <div class='main_container'>
-
+    
         <div class="diploma">
             <div class="background">
                 <img class="image" src="{{ asset($course->image) }}" alt="Diploma">
             </div>
             <h1>{{ $course->title }}</h1>
+        </div>
+        <div class='text-section'>
+            <div class="text">
+                <span class="about_course">About the Course</span>
+                <span class="course_description">{!! $course->description !!}</span>
+            </div>
             <div class="other_courses">
                 <span>Other Courses</span>
                 @if(!empty($allcourses))
@@ -357,12 +394,6 @@ h1{
 
             </div>
         </div>
-        <div class="text mb-5">
-            <span class="about_course">About the Course</span>
-            <span class="course_description">{!! $course->description !!}</span>
-        </div>
-
-
 </div>
 @endsection
 

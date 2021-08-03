@@ -1,14 +1,33 @@
+<style>
+    .mobile-nav .mobile-nav-wrapper{
+        display:none;
+    }
+     .mobile-nav.active .mobile-nav-wrapper{
+        display:block;
+    }
+    .mobile-nav .mobile-nav-dropdown{
+        font-size: 24px;
+        border:none;
+        text-decoration:none;
+        background: none;
+        color: white;
+    }
 
+    .mobile-nav .mobile-nav-dropdown:focus{
+        outline:none;
+    }
+
+</style> 
 <div id="myNav" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
 				>&times;</a
 			>
 
-    <div class="overlay-content">
+    <div class="overlay-content" >
         <a href="{{ route('front.home') }}">{{ getFrontLanguage('home') }}</a>
 
-        <div class="mobile-nav">
-            <button>
+        <div class="mobile-nav"  id="myDIV1">
+            <button class="mobile-nav-dropdown" onclick=myFunction1()>
                 {{ getFrontLanguage('school-overview')}} <i class="fa fa-caret-down"></i>
             </button>
             <div class="mobile-nav-wrapper">
@@ -29,8 +48,8 @@
                     {{--@endforeach--}}
             {{--</div>--}}
         {{--</div>--}}
-        <div class="mobile-nav">
-            <button >
+        <div class="mobile-nav" id="myDIV2">
+            <button class="mobile-nav-dropdown" onclick=myFunction2()>
                 {{ getFrontLanguage('members-enrolled')}} <i class="fa fa-caret-down"></i>
             </button>
             <div class="mobile-nav-wrapper">
@@ -40,8 +59,8 @@
             </div>
         </div>
         <a href="{{ route('front.students') }}">{{ getFrontLanguage('student-detail')}}</a>
-        <div class="mobile-nav">
-            <button >
+        <div class="mobile-nav" id="myDIV3">
+            <button class="mobile-nav-dropdown" onclick=myFunction3()>
                 {{ getFrontLanguage('information')}} <i class="fa fa-caret-down"></i>
             </button>
             <div class="mobile-nav-wrapper">
@@ -53,8 +72,8 @@
             </div>
         </div>
         <a href="{{ route('front.calendar') }}">{{ getFrontLanguage('calendar')}}</a>
-        <div class="mobile-nav">
-            <button >
+        <div class="mobile-nav" id="myDIV4">
+            <button class="mobile-nav-dropdown" onclick=myFunction4()>
                 {{ getFrontLanguage('result-1')}} <i class="fa fa-caret-down"></i>
             </button>
             <div class="mobile-nav-wrapper">
@@ -101,7 +120,7 @@
      <li class=" nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbar-dropdown-menu-link-239" aria-haspopup="true" aria-expanded="false">
         {{ getFrontLanguage('school-overview')}}</a>
 
-        <div class="dropdown-menu" aria-labelledby="navbar-dropdown-menu-link-239">
+        <div class="dropdown-menu" aria-labelledby="navbar-dropdown-menu-link-239" >
             <a href="{{ route('front.about') }}">{{ getFrontLanguage('about-us') }}</a>
             {{--<a href="{{ route('front.mission-vision') }}">Vision & Mission</a>--}}
             <a href="{{ route('front.principal-note') }}">{{ getFrontLanguage('administration-note') }}</a>
@@ -183,3 +202,22 @@
         </div>
     </div>
 </div>
+
+<script>
+function myFunction1() {
+   var element = document.getElementById("myDIV1");
+   element.classList.toggle("active");
+}
+function myFunction2() {
+   var element = document.getElementById("myDIV2");
+   element.classList.toggle("active");
+}
+function myFunction3() {
+   var element = document.getElementById("myDIV3");
+   element.classList.toggle("active");
+}
+function myFunction4() {
+   var element = document.getElementById("myDIV4");
+   element.classList.toggle("active");
+}
+</script>
